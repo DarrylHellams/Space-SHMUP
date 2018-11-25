@@ -18,7 +18,7 @@ public class Main : MonoBehaviour {
     {
         S = this;
         bndCheck = GetComponent<BoundsCheck>();
-        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+        Invoke("SpawnEnemy", 1f/enemySpawnPerSecond);
     }
 
     public void SpawnEnemy()
@@ -29,7 +29,7 @@ public class Main : MonoBehaviour {
         float enemyPadding = enemyDefaultPadding;
         if (go.GetComponent<BoundsCheck>() != null)
         {
-            enemyPadding = Mathf.Abs(go.GetComponent<BoundsCheck>().radius);
+            enemyPadding = Mathf.Abs (go.GetComponent<BoundsCheck>().radius); 
         }
 
         Vector3 pos = Vector3.zero;
@@ -39,7 +39,17 @@ public class Main : MonoBehaviour {
         pos.y = bndCheck.camHeight + enemyPadding;
         go.transform.position = pos;
 
-        Invoke("SpawnEnemy", 1f / enemySpawnPerSecond);
+        Invoke("SpawnEnemy", 1f/enemySpawnPerSecond); 
+    }
+
+    public void DelayedRestart(float delay)
+    {
+        Invoke("Restart", delay);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("_Scene_0");
     }
 
 
